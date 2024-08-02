@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/css/styles.css">
+    <title>Chess by Rdead</title>
+</head>
+<body>
+<div id="header">
+    <div class="logo">RdEad</div>
+    <div class="links">
+        <ul>
+            <li><a href="https://discord.gg/VY2yW8ez" target="_blank">Discord Server</a></li>
+            <li><a href="https://www.chess.com/club/chess-israel" target="_blank">Chess Club</a></li>
+        </ul>
+    </div>
+</div>
+
+<div class="welcome">
+    <button id="signinBtn">Signin</button> <!-- Corrected ID from 'signingBtn' to 'signinBtn' -->
+    <button id="signupBtn">Signup</button>
+</div>
+
+<div id="registrationForm" class="registration-form hidden">
+    <h2>Register</h2>
+    <form id="signupForm">
+        <label for="username">Username:</label>
+        <input type="text" id="username" name="username" required>
+        <label for="password">Password:</label>
+        <input type="password" id="password" name="password" required>
+        <label for="email">Email:</label>
+        <input type="email" id="email" name="email" required>
+        <button type="submit">Submit</button>
+        <button type="button" id="backBtn">Back</button>
+    </form>
+</div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/sockjs-client/1.4.0/sockjs.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/stomp.js/2.3.3/stomp.min.js"></script>
+<script src="js/script.js"></script>
+</body>
+</html>

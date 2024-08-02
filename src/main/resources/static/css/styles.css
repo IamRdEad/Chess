@@ -42,11 +42,11 @@ a {
 }
 
 button {
-    font-size: 42px;
+    font-size: 24px;
     width: 200px;
 }
 
-.registration-form {
+.form-container {
     display: flex;
     flex-direction: column;
     gap: 10px;
@@ -59,31 +59,35 @@ button {
     display: none;
 }
 
-.registration-form h2 {
+.form-container h2 {
     margin-bottom: 20px;
 }
 
-.registration-form label {
+.form-container label {
     font-size: 18px;
     margin-bottom: 5px;
 }
 
-.registration-form input {
+.form-container input {
     font-size: 24px;
     margin-bottom: 10px;
     padding: 5px;
     width: 300px;
 }
 
-.registration-form button {
+.form-container button {
     font-size: 24px;
     margin-top: 10px;
     padding: 10px 20px;
     width: auto;
 }
 
-form{
+form {
     display: flex;
     flex-direction: column;
     flex-grow: 1;
+}
+
+.backBtn {
+    background-color: #ccc;
 }

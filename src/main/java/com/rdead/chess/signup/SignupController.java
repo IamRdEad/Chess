@@ -1,29 +1,32 @@
 package com.rdead.chess.signup;
 
+import com.rdead.chess.Response;
 import com.rdead.chess.user.*;
+import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.messaging.handler.annotation.MessageMapping;
 import org.springframework.messaging.handler.annotation.SendTo;
 import org.springframework.stereotype.Controller;
-
-import java.time.LocalDateTime;
-import java.time.format.DateTimeFormatter;
 
 @Controller
 public class SignupController {
 
     private final UserService service;
-    private final UserRepository repository;
+    private final UserMapper mapper;
 
-    public SignupController(UserService service, UserRepository repository) {
+    public SignupController(UserService service, UserMapper mapper) {
         this.service = service;
-        this.repository = repository;
+        this.mapper = mapper;
     }
 
     @MessageMapping("/signup")
-    @SendTo("/topic/signupResponse")
-    public SignupResponse handleSignUp(SignupMessage message) throws Exception{
-        User user = service.saveUser(message);
-        repository.save(user);
-        return new SignupResponse("User "+ message.getUsername() + "registered successfully!");
+    @SendTo("/topic/Response")
+    public Response handleSignUp(SignupMessage message) throws Exception{
+        User user = mapper.signupMessageToUser(message);
+        try {
+            service.saveUser(user);
+            return new Response("User " + user.getUsername() + " registered successfully!");
+        }catch (DataIntegrityViolationException exception){
+            return new Response("Username or email already exists. Please try a different one.");
+        }
     }
 }

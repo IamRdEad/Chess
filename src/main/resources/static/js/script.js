@@ -6,16 +6,15 @@ document.addEventListener('DOMContentLoaded', function() {
         stompClient = Stomp.over(socket);
         stompClient.connect({}, function (frame) {
             console.log('Connected: ' + frame);
-
-            // Subscribe to the signup response topic
-            stompClient.subscribe('/topic/signupResponse', function (response) {
-                showSignupResponse(JSON.parse(response.body));
+            stompClient.subscribe('/topic/Response', function (response) {
+                showResponse(JSON.parse(response.body));
             });
         });
     }
 
-    function showSignupResponse(message) {
-        alert(message.content + "\nSignup Date: " + message.signupDate);
+    function showResponse(message) {
+        console.log('Message content: ', message.content);
+        alert(message.content);
     }
 
     connect();

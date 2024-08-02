@@ -1,9 +1,9 @@
-package com.rdead.chess.signup;
+package com.rdead.chess;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 
 @Data
 @AllArgsConstructor
-public class SignupResponse {
+public class Response {
     private String content;
 }

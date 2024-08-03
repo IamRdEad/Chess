@@ -24,9 +24,9 @@ public class SignupController {
         User user = mapper.signupMessageToUser(message);
         try {
             service.saveUser(user);
-            return new Response("User " + user.getUsername() + " registered successfully!");
+            return new Response("User " + user.getUsername() + " registered successfully!",100);
         }catch (DataIntegrityViolationException exception){
-            return new Response("Username or email already exists. Please try a different one.");
+            return new Response("Username or email already exists. Please try a different one.",101);
         }
     }
 }

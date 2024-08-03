@@ -1,9 +1,11 @@
 body {
     background-color: rgb(226, 230, 238);
     display: flex;
-    flex-direction: column;
+    justify-content: center;
+    align-items: center;
     height: 100vh;
     margin: 0;
+    flex-direction: column;
 }
 
 #header {
@@ -13,6 +15,7 @@ body {
     background-color: rgb(220, 220, 236);
     align-items: center;
     padding: 10px 20px;
+    width: 100%;
 }
 
 .logo {

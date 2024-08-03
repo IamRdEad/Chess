@@ -18,10 +18,9 @@ public class SigningController {
     @MessageMapping("/signin")
     @SendTo("/topic/Response")
     public Response handleSigning(SigningMessage message) {
-        System.out.println("trying to connect with: " + message.getUsername());
         if (repository.isCorrect(message.getUsername(), message.getPassword())) {
-            return new Response("Welcome back " + message.getUsername());
+            return new Response("Welcome back " + message.getUsername(),200);
         }
-        return new Response("Username or Password doesn't match");
+        return new Response("Username or Password doesn't match",201);
     }
 }

@@ -1,3 +1,13 @@
+const boardState = [
+    ['R', 'N', 'B', 'Q', 'K', 'B', 'N', 'R'],
+    ['P', 'P', 'P', 'P', 'P', 'P', 'P', 'P'],
+    [' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '],
+    [' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '],
+    [' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '],
+    [' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '],
+    ['p', 'p', 'p', 'p', 'p', 'p', 'p', 'p'],
+    ['r', 'n', 'b', 'q', 'k', 'b', 'n', 'r']
+];
 document.addEventListener('DOMContentLoaded', () => {
     const chessboard = document.getElementById('chessboard');
 
@@ -12,6 +22,14 @@ document.addEventListener('DOMContentLoaded', () => {
                 } else {
                     square.classList.add('black');
                 }
+
+                const piece = boardState[row][col];
+                if (piece !== ' ') {
+                    const pieceElement = document.createElement('div');
+                    pieceElement.classList.add('piece', piece);
+                    square.appendChild(pieceElement);
+                }
+
                 chessboard.appendChild(square);
             }
         }

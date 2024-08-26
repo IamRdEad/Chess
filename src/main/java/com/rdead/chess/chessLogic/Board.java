@@ -1,5 +1,6 @@
 package com.rdead.chess.chessLogic;
 
+import com.rdead.chess.chessLogic.Pieces.Piece;
 import lombok.AllArgsConstructor;
 
 @AllArgsConstructor
@@ -18,5 +19,18 @@ public class Board {
 
     public Piece getPiece(int row, int col){
         return board[row][col];
+    }
+
+    public void printBoard(){
+        for (Piece[] pieces : board) {
+            for (Piece piece : pieces) {
+                if (piece == null)
+                    System.out.print("N");
+                else {
+                    System.out.print(piece.getType());
+                }
+            }
+            System.out.println();
+        }
     }
 }

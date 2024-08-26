@@ -1,4 +1,6 @@
-package com.rdead.chess.chessLogic;
+package com.rdead.chess.chessLogic.Pieces;
+
+import com.rdead.chess.chessLogic.Board;
 
 import java.util.ArrayList;
 import java.util.List;

@@ -1,6 +1,7 @@
 package com.rdead.chess.signin;
 
 import com.rdead.chess.BoardForTesting;
+import com.rdead.chess.BoardResponse;
 import com.rdead.chess.Response;
 import com.rdead.chess.chessLogic.Board;
 import com.rdead.chess.game.Game;
@@ -22,13 +23,14 @@ public class SigningController {
 
     @MessageMapping("/signin")
     @SendTo("/topic/Response")
-    public Response handleSigning(SigningMessage message) {
+    public BoardResponse handleSigning(SigningMessage message) {
         if (repository.isCorrect(message.getUsername(), message.getPassword())) {
             Game game = createNewGame(message.getUsername()); //only now for testing will be changed
             GameList.addGame(game);
-            return new Response("Welcome back " + message.getUsername(),200);
+            String[][] board = game.getBoard().boardToSting();
+            return new BoardResponse("Welcome back " + message.getUsername(),200, board);
         }
-        return new Response("Username or Password doesn't match",201);
+        return new BoardResponse("Username or Password doesn't match",201, null);
     }
 
     private Game createNewGame(String username){

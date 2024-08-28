@@ -25,12 +25,22 @@ public class Board {
         for (Piece[] pieces : board) {
             for (Piece piece : pieces) {
                 if (piece == null)
-                    System.out.print("N");
+                    System.out.print(" ");
                 else {
                     System.out.print(piece.getType());
                 }
             }
             System.out.println();
         }
+    }
+
+    public String[][] boardToSting(){
+        String[][] stringBoard = new String[8][8];
+        for(int i=0; i<8; i++){
+            for(int j=0; j<8; j++){
+                stringBoard[i][j] = board[i][j]==null? " " : board[i][j].getType();
+            }
+        }
+        return stringBoard;
     }
 }

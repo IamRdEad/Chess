@@ -6,4 +6,5 @@ import lombok.Data;
 public class MoveRequest {
     private Coordinates from;
     private Coordinates to;
+    private String username;
 }

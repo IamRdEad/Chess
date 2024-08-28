@@ -8,7 +8,7 @@ public class Board {
 
     private Piece[][] board;
 
-    public void updateBoard(int row, int col, int newRow, int newCol){
+    public void makeMove(int row, int col, int newRow, int newCol){
         this.board[newRow][newCol] = this.board[row][col];
         this.board[row][col] = null;
     }

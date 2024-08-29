@@ -31,20 +31,16 @@ public class MoveHandler {
             response.setCode(404);
             return response;
         }
-        //System.out.println("The piece is: " + p.getType());
         String isPieceInNewPlace = b.getPiece(toRow, toCol) == null? "E" : b.getPiece(toRow, toCol).getType();
         String newPlace = fromRow + String.valueOf(fromCol) + toRow + toCol + isPieceInNewPlace;
-        //System.out.println("The piece wants to make the move: " + newPlace);
         List<String> possibleMoves = p.possibleMoves();
-        //System.out.println("The possible moves are: " + Arrays.toString(possibleMoves.toArray()));
-        //System.out.println("is the move in the list?: " + possibleMoves.contains(newPlace));
-
 
         if(possibleMoves.contains(newPlace)){
             System.out.println("move is possible");
             response.setContent("Move is possible");
             response.setCode(301);
             b.makeMove(fromRow, fromCol, toRow, toCol);
+            p.setNewPlace(toRow, toCol);
             response.setBoard(b.boardToSting());
             b.printBoard();
         }

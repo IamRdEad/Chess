@@ -6,8 +6,15 @@ import lombok.NoArgsConstructor;
 
 @EqualsAndHashCode(callSuper = true)
 @Data
-@AllArgsConstructor
 @NoArgsConstructor
+@AllArgsConstructor
 public class BoardResponse extends Response{
     private String[][] board;
+
+    public BoardResponse(String content, int code, String[][] board) {
+        super(content, code);
+        this.board = board;
+    }
 }
+
+

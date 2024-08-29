@@ -1,9 +1,13 @@
 package com.rdead.chess.chessLogic.Pieces;
 
 import com.rdead.chess.chessLogic.Board;
+import lombok.Getter;
+import lombok.Setter;
 
 import java.util.List;
 
+@Getter
+@Setter
 public abstract  class Piece {
     protected String type;
     protected String color;
@@ -20,25 +24,6 @@ public abstract  class Piece {
         board.setPiece(this);
     }
 
-    public String getType() {
-        return type;
-    }
-
-    public String getColor() {
-        return color;
-    }
-
-    public int getRow() {
-        return row;
-    }
-
-    public int getCol() {
-        return col;
-    }
-
-    public Board getBoard() {
-        return board;
-    }
 
     public abstract List<String> possibleMoves();
 
@@ -48,5 +33,10 @@ public abstract  class Piece {
 
     public boolean sameColor(Piece other){
         return this.color.equals(other.color);
+    }
+
+    public void setNewPlace(int row, int col){
+        this.row = row;
+        this.col = col;
     }
 }

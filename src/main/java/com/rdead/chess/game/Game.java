@@ -17,5 +17,4 @@ public class Game {
         this.board = board;
         this.turn = 0;
     }
-
 }

@@ -1,12 +1,11 @@
 package com.rdead.chess.chessLogic;
 
-import com.rdead.chess.BoardForTesting;
 import com.rdead.chess.BoardResponse;
-import com.rdead.chess.Response;
 import com.rdead.chess.chessLogic.Pieces.Piece;
 import com.rdead.chess.game.Game;
 import com.rdead.chess.game.GameList;
 import com.rdead.chess.move.MoveRequest;
+
 import java.util.List;
 
 public class MoveHandler {
@@ -32,17 +31,16 @@ public class MoveHandler {
             return response;
         }
         String isPieceInNewPlace = b.getPiece(toRow, toCol) == null? "E" : b.getPiece(toRow, toCol).getType();
-        String newPlace = fromRow + String.valueOf(fromCol) + toRow + toCol + isPieceInNewPlace;
+        String move = fromRow + String.valueOf(fromCol) + toRow + toCol + isPieceInNewPlace;
         List<String> possibleMoves = p.possibleMoves();
 
-        if(possibleMoves.contains(newPlace)){
+        if(possibleMoves.contains(move)){
             System.out.println("move is possible");
             response.setContent("Move is possible");
             response.setCode(301);
-            b.makeMove(fromRow, fromCol, toRow, toCol);
+            b.makeMove(move);
             p.setNewPlace(toRow, toCol);
             response.setBoard(b.boardToSting());
-            b.printBoard();
         }
         else{
             System.out.println("move is impossible");

@@ -20,7 +20,8 @@ public class Pawn extends Piece{
         int dir = color.equals("white")? -1 : 1;
         int firstRow = color.equals("white")? 6 : 1; //in 2d array pawn start in row 6 for white and 1 for black
         if(board.getPiece(row+dir, col) == null){ //check if you can move 1 step forward
-            movesList.add(row +String.valueOf(col) + (row + dir) + col + "E");
+            String move = row +String.valueOf(col) + (row + dir) + col + "E";
+            movesList.add(move);
         }
         //only in the first row you can move 2 forward
         if(row==firstRow){

@@ -27,11 +27,17 @@ public class Knight extends Piece{
             }
             Piece temp=board.getPiece(newRow, newCol);
             if(temp == null){
-                movesList.add(row + String.valueOf(col) + newRow + newCol + "E");
+                String newMove = row + String.valueOf(col) + newRow + newCol + "E";
+                if(KingSafe.kingSafe(board, this.color, newMove)){
+                    movesList.add(newMove);
+                }
+
             }
             else{
                 if(!(this.sameColor(temp))){
-                    movesList.add(row + String.valueOf(col) + newRow + newCol + temp.getType());
+                    String newMove = row + String.valueOf(col) + newRow + newCol + temp.getType();
+                    KingSafe.kingSafe(board, this.color, newMove);
+                    movesList.add(newMove);
                 }
             }
         }

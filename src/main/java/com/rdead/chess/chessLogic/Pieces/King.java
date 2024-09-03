@@ -19,17 +19,17 @@ public class King extends Piece {
                 if (i == 0 && j == 0) {
                     continue;
                 }
-                try {
-                    Piece temp = board.getPiece(row + i, col + j);
-                    if (temp == null) {
-                        movesList.add(row + String.valueOf(col) + (row + i) + (col + j) + "E");
-                    } else if (!this.sameColor(temp)) {
-                        movesList.add(row + String.valueOf(col) + (row + i) + (col + j) + temp.getType());
-                    }
-
-                } catch (Exception ignored) {
+                int newRow = row+i;
+                int newCol = col+j;
+                if(!inBoard(newRow, newCol)){
+                    continue;
                 }
-                ;
+                Piece temp = board.getPiece(row + i, col + j);
+                if (temp == null) {
+                    movesList.add(row + String.valueOf(col) + (row + i) + (col + j) + "E");
+                } else if (!this.sameColor(temp)) {
+                    movesList.add(row + String.valueOf(col) + (row + i) + (col + j) + temp.getType());
+                }
             }
         }
         return movesList;

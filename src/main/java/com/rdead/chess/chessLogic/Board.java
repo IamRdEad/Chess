@@ -8,9 +8,21 @@ public class Board {
 
     private Piece[][] board;
 
-    public void makeMove(int row, int col, int newRow, int newCol){
+    public void makeMove(String move){
+        int row = Character.getNumericValue(move.charAt(0));
+        int col = Character.getNumericValue(move.charAt(1));
+        int newRow = Character.getNumericValue(move.charAt(2));
+        int newCol = Character.getNumericValue(move.charAt(3));
+
         this.board[newRow][newCol] = this.board[row][col];
         this.board[row][col] = null;
+    }
+
+    public void undoMove(String move, Piece piece){
+
+        this.board[Character.getNumericValue(move.charAt(0))][Character.getNumericValue(move.charAt(1))] =
+                this.board[Character.getNumericValue(move.charAt(2))][Character.getNumericValue(move.charAt(3))];
+        this.board[Character.getNumericValue(move.charAt(2))][Character.getNumericValue(move.charAt(3))] = piece;
     }
 
     public void setPiece(Piece p){

@@ -1,11 +1,10 @@
 package com.rdead.chess.chessLogic.Pieces;
 
 import com.rdead.chess.chessLogic.Board;
-
 import java.util.ArrayList;
 import java.util.List;
 
-public class Queen extends Piece{
+public class Queen extends Piece {
     public Queen(String type, String color, int row, int col, Board board) {
         super(type, color, row, col, board);
     }
@@ -14,7 +13,7 @@ public class Queen extends Piece{
     public List<String> possibleMoves() {
         List<String> movesList = new ArrayList<>();
 
-        // Check all four possible diagonal directions for the bishop
+        // Check all four possible diagonal directions
         checkDiagonal(movesList, 1, 1);
         checkDiagonal(movesList, 1, -1);
         checkDiagonal(movesList, -1, 1);
@@ -47,11 +46,14 @@ public class Queen extends Piece{
             }
 
             Piece temp = board.getPiece(newRow, newCol);
+            String move = this.row + String.valueOf(this.col) + newRow + newCol + (temp == null ? "E" : temp.getType());
             if (temp == null) {
-                movesList.add(this.row + String.valueOf(this.col) + newRow + newCol + "E");
+                if (KingSafe.kingSafe(this.board, this.color, move)) {
+                    movesList.add(move);
+                }
             } else {
-                if (!this.sameColor(temp)) {
-                    movesList.add(this.row + String.valueOf(this.col) + newRow + newCol + temp.getType());
+                if (!this.sameColor(temp) && KingSafe.kingSafe(this.board, this.color, move)) {
+                    movesList.add(move);
                 }
                 break;
             }
@@ -62,12 +64,16 @@ public class Queen extends Piece{
         if (!this.inBoard(newRow, newCol)) {
             return true;
         }
+
         Piece temp = board.getPiece(newRow, newCol);
+        String move = this.row + String.valueOf(this.col) + newRow + newCol + (temp == null ? "E" : temp.getType());
         if (temp == null) {
-            movesList.add(this.row + String.valueOf(this.col) + newRow + newCol + "E");
+            if (KingSafe.kingSafe(this.board, this.color, move)) {
+                movesList.add(move);
+            }
         } else {
-            if (!this.sameColor(temp)) {
-                movesList.add(this.row + String.valueOf(this.col) + newRow + newCol + temp.getType());
+            if (!this.sameColor(temp) && KingSafe.kingSafe(this.board, this.color, move)) {
+                movesList.add(move);
             }
             return true;
         }

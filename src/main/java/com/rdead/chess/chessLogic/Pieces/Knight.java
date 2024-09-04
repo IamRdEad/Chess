@@ -36,8 +36,9 @@ public class Knight extends Piece{
             else{
                 if(!(this.sameColor(temp))){
                     String newMove = row + String.valueOf(col) + newRow + newCol + temp.getType();
-                    KingSafe.kingSafe(board, this.color, newMove);
-                    movesList.add(newMove);
+                    if(KingSafe.kingSafe(board, this.color, newMove)){
+                        movesList.add(newMove);
+                    }
                 }
             }
         }

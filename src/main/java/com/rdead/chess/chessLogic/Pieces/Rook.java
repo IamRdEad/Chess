@@ -37,10 +37,16 @@ public class Rook extends Piece{
         }
         Piece temp = board.getPiece(newRow, newCol);
         if (temp == null) {
-            movesList.add(this.row + String.valueOf(this.col) + newRow + newCol + "E");
+            String move = this.row + String.valueOf(this.col) + newRow + newCol + "E";
+            if(KingSafe.kingSafe(this.board, this.color, move)){
+                movesList.add(move);
+            }
         } else {
             if (!this.sameColor(temp)) {
-                movesList.add(this.row + String.valueOf(this.col) + newRow + newCol + temp.getType());
+                String move = this.row + String.valueOf(this.col) + newRow + newCol + temp.getType();
+                if(KingSafe.kingSafe(this.board, this.color, move)){
+                    movesList.add(move);
+                }
             }
             return true;
         }

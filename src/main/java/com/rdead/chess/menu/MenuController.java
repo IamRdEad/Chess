@@ -15,7 +15,7 @@ public class MenuController {
     @SendTo("/topic/Response")
     public BoardResponse menu(GeneralMessage message){
         if(message.getCode()==1001){
-            Game game = new Game(message.getUsername(), "computer", 1);
+            Game game = new Game(message.getUsername(), "computer", 1, false);
             int id = GameList.addGame(game);
             String[][] board = game.getBoard().boardToSting();
             return new BoardResponse("Ok", 2001, board, id);

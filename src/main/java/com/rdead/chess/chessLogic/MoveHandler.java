@@ -23,29 +23,12 @@ public class MoveHandler {
         int gameId = moveRequest.getGameId();
         System.out.println("Game id is: " + gameId);
         Game game = GameList.getGameById(gameId);
-        Board b = game.getBoard();
-
-
-        Piece p = b.getPiece(fromRow, fromCol);
-        if(p==null){
-            response.setContent("there is no piece there");
-            response.setCode(404);
-            return response;
-        }
-        String isPieceInNewPlace = b.getPiece(toRow, toCol) == null? "E" : b.getPiece(toRow, toCol).getType();
-        String move = fromRow + String.valueOf(fromCol) + toRow + toCol + isPieceInNewPlace;
-        List<String> possibleMoves = p.possibleMoves();
-
-        if(possibleMoves.contains(move)){
-            System.out.println("move is possible");
+        if(game.handleGame(fromRow, fromCol, toRow, toCol)){
             response.setContent("Move is possible");
             response.setCode(301);
-            b.makeMove(move);
-            p.setNewPlace(toRow, toCol);
-            response.setBoard(b.boardToSting());
+            response.setBoard(game.getBoard().boardToSting());
         }
         else{
-            System.out.println("move is impossible");
             response.setContent("Move is impossible");
             response.setCode(401);
         }

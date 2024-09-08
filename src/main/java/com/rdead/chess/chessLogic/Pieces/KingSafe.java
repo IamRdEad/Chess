@@ -150,7 +150,7 @@ public class KingSafe {
 
     private static boolean checkPawn(int row, int col, String color, Board board) {
         // Check if the king is white or black
-        int direction = color.equals("white") ? -1 : 1;  // White pawns move upwards (-1), black downwards (+1)
+        int direction = color.equals("white") ? -1 : 1;
 
         int[] colOffsets = {-1, 1};
 

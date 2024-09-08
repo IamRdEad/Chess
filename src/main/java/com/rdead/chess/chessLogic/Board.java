@@ -2,6 +2,9 @@ package com.rdead.chess.chessLogic;
 
 import com.rdead.chess.chessLogic.Pieces.*;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class Board {
 
     private Piece[][] board;
@@ -13,8 +16,10 @@ public class Board {
         int newRow = Character.getNumericValue(move.charAt(2));
         int newCol = Character.getNumericValue(move.charAt(3));
 
+        //change the piece on the board
         this.board[newRow][newCol] = this.board[row][col];
         this.board[row][col] = null;
+
     }
 
     public void undoMove(String move, Piece piece){
@@ -131,5 +136,21 @@ public class Board {
                 }
             }
         }
+    }
+
+    public int evaluteBoard(String color){
+        return Evaluation.evalBoard(color, this.board);
+    }
+
+    public List<String> allMoves(String color){
+        List<String> possibleMoves = new ArrayList<>();
+        for(Piece[] row: this.board){
+            for(Piece piece: row){
+                if(piece!=null && piece.getColor().equals(color)){
+                    possibleMoves.addAll(piece.possibleMoves());
+                }
+            }
+        }
+        return possibleMoves;
     }
 }

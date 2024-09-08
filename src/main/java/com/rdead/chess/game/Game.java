@@ -11,10 +11,10 @@ public class Game {
     private Board board;
     private int turn;
 
-    public Game(Player playerWhite, Player playerBlack, Board board) {
-        this.playerWhite = playerWhite;
-        this.playerBlack = playerBlack;
-        this.board = board;
+    public Game(String playerWhite, String playerBlack, int code) {
+        this.playerWhite = new Player(playerWhite, "white");
+        this.playerBlack = new Player(playerBlack, "black");
+        this.board = new Board(code);
         this.turn = 0;
     }
 }

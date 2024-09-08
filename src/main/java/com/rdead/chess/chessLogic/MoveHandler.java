@@ -20,9 +20,11 @@ public class MoveHandler {
 
         System.out.println("Received move from: (" + fromRow + ", " + fromCol + ") to (" + toRow + ", " + toCol + ")");
         System.out.println("from: " + username);
-
-        Game game = GameList.getGameById(1);
+        int gameId = moveRequest.getGameId();
+        System.out.println("Game id is: " + gameId);
+        Game game = GameList.getGameById(gameId);
         Board b = game.getBoard();
+
 
         Piece p = b.getPiece(fromRow, fromCol);
         if(p==null){

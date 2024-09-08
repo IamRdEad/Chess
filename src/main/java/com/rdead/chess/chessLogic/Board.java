@@ -1,12 +1,11 @@
 package com.rdead.chess.chessLogic;
 
-import com.rdead.chess.chessLogic.Pieces.Piece;
-import lombok.AllArgsConstructor;
+import com.rdead.chess.chessLogic.Pieces.*;
 
-@AllArgsConstructor
 public class Board {
 
     private Piece[][] board;
+    private final int LEN = 8;
 
     public void makeMove(String move){
         int row = Character.getNumericValue(move.charAt(0));
@@ -25,9 +24,6 @@ public class Board {
         this.board[Character.getNumericValue(move.charAt(2))][Character.getNumericValue(move.charAt(3))] = piece;
     }
 
-    public void setPiece(Piece p){
-        board[p.getRow()][p.getCol()]=p;
-    }
 
     public Piece getPiece(int row, int col){
         return board[row][col];
@@ -54,5 +50,86 @@ public class Board {
             }
         }
         return stringBoard;
+    }
+
+    public Board(int code){
+        String[][] stringBoard = getBoard(code);
+        board = new Piece[LEN][LEN];
+        fillBoard(stringBoard);
+    }
+
+    private String[][] getBoard(int code){
+        if(code==1){
+            return new String[][]{
+                    {"R", "N", "B", "Q", "K", "B", "N", "R"},
+                    {"P", "P", "P", "P", "P", "P", "P", "P"},
+                    {" ", " ", " ", " ", " ", " ", " ", " "},
+                    {" ", " ", " ", " ", " ", " ", " ", " "},
+                    {" ", " ", " ", " ", " ", " ", " ", " "},
+                    {" ", " ", " ", " ", " ", " ", " ", " "},
+                    {"p", "p", "p", "p", "p", "p", "p", "p"},
+                    {"r", "n", "b", "q", "k", "b", "n", "r"}
+            };
+        }
+        return null;
+    }
+
+    private void fillBoard(String[][] stringBoard){
+        for(int i=0; i<LEN; i++){
+            for(int j=0; j<LEN; j++){
+                switch (stringBoard[i][j]){
+                    case "p":
+                        Piece wp = new Pawn("p","white",i,j, this);
+                        this.board[i][j] = wp;
+                        break;
+                    case "P":
+                        Piece bp = new Pawn("P","black",i,j, this);
+                        this.board[i][j] = bp;
+                        break;
+                    case "r":
+                        Piece wr = new Pawn("r","white",i,j,this);
+                        this.board[i][j] = wr;
+                        break;
+                    case "R":
+                        Piece br = new Pawn("R","black",i,j,this);
+                        this.board[i][j] = br;
+                        break;
+                    case "n":
+                        Piece wn = new Knight("n","white",i,j,this);
+                        this.board[i][j] = wn;
+                        break;
+                    case "N":
+                        Piece bn = new Knight("N","black",i,j,this);
+                        this.board[i][j] = bn;
+                        break;
+                    case "b":
+                        Piece wb = new Pawn("b","white",i,j,this);
+                        this.board[i][j] = wb;
+                        break;
+                    case "B":
+                        Piece bb = new Pawn("B","black",i,j,this);
+                        this.board[i][j] = bb;
+                        break;
+                    case "q":
+                        Piece wq = new Pawn("q","white",i,j,this);
+                        this.board[i][j] = wq;
+                        break;
+                    case "Q":
+                        Piece bq = new Pawn("Q","black",i,j,this);
+                        this.board[i][j] = bq;
+                        break;
+                    case "k":
+                        Piece wk = new Pawn("k","white",i,j,this);
+                        this.board[i][j] = wk;
+                        break;
+                    case "K":
+                        Piece bk = new Pawn("K","black",i,j,this);
+                        this.board[i][j] = bk;
+                        break;
+                    default:
+                        this.board[i][j] = null;
+                }
+            }
+        }
     }
 }

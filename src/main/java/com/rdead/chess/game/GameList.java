@@ -6,9 +6,10 @@ public class GameList {
     private static final HashMap<Integer, Game> gameList = new HashMap<>();
     private static int gameId = 1;
 
-    public static void addGame(Game game){
+    public static int addGame(Game game){
         gameList.put(gameId, game);
         gameId++;
+        return gameId-1;
     }
 
     public static Game getGameById(Integer gameId) throws RuntimeException{

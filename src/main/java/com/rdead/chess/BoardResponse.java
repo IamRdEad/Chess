@@ -10,10 +10,12 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 public class BoardResponse extends Response{
     private String[][] board;
+    private int gameId;
 
-    public BoardResponse(String content, int code, String[][] board) {
+    public BoardResponse(String content, int code, String[][] board, int gameId) {
         super(content, code);
         this.board = board;
+        this.gameId = gameId;
     }
 }
 

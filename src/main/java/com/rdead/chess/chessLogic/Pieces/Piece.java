@@ -21,9 +21,15 @@ public abstract  class Piece {
         this.row = row;
         this.col = col;
         this.board = board;
-        board.setPiece(this);
     }
 
+    public Piece(Piece other){
+        this.type = other.type;
+        this.color = other.color;
+        this.row =other.row;
+        this.col = other.col;
+        this.board = other.board;
+    }
 
     public abstract List<String> possibleMoves();
 
